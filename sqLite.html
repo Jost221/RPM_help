@@ -142,11 +142,11 @@
             <i>Пример 3</i>
             <br \>
             <br \>
-            Так же можно подтгивать только нужные значения используя оператор WHERE, которому присущи операторы конструкции if, по мимо их имеются и новые операторы:<br \> 1) IN - удовлетворют все числа входщие в интервал (value1,value2)<br \>2) NOT IN - всё тоже самое, просто отрицание
+            Так же можно подтгивать только нужные значения используя оператор WHERE, которому присущи операторы конструкции if, по мимо их имеются и новые операторы:<br \> &nbsp&nbsp&nbsp&nbsp1) IN - удовлетворют все числа входщие в интервал (value1,value2)<br \>&nbsp&nbsp&nbsp&nbsp2) NOT IN - всё тоже самое, просто отрицание<br \>&nbsp&nbsp&nbsp&nbsp3) LIKE - оператор позволющий использовать подстановочные символы, такие как % и _. <br \> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp1) Позволяет сопоставить любую строку любой длины (включая нулевую длину)<br \> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp2)Позволет сопоставить одиночный символ
             <br \>
             <br \>
             """
-            SELECT * FROM users WHERE float == 1.5 AND rowid IN(-1, 3)
+            SELECT * FROM users WHERE float == 1.5 AND rowid IN(-1, 3) OR string_with_default_chenge_1 LIKE "1%"
             """
             <br \>
             <br \>
@@ -168,17 +168,39 @@
             """
         </h3>
         <h2>
-            Для работы со значниями в питоне.<br \>
-            При выполнениии команды, например:<br \>
+            Рбота со значниями в питоне.<br \>
+            &nbsp&nbsp&nbsp&nbspПри выполнениии команды, например:<br \>
             cursor.execute("""SELECT * FROM users""")<br \>
             В яйчейку памяти, на которую ссылается переменна cursor запишется таблица в зависимости от того, что мы указали в execute. Для обращения к элементам таблицы мы можем поступить следующим образом:<br \ >
             1) Записывать данные в новую переменную и работать в кортэжем. Дл этого можно использовать следующие команды:<br \>
-            &#9;1.1 respons = cursor.fetchall() - получаем весь курсор<br \>
-            &#9;1.2 respons = cursor.fetchone() - получаем первую строку таблицы<br \>
-            &#9;1.3 respons = cursor.fetchmany(n) - получаем первые n строк<br \>
+            &nbsp&nbsp&nbsp&nbsp1.1 respons = cursor.fetchall() - получаем весь курсор<br \>
+            &nbsp&nbsp&nbsp&nbsp1.2 respons = cursor.fetchone() - получаем первую строку таблицы<br \>
+            &nbsp&nbsp&nbsp&nbsp1.3 respons = cursor.fetchmany(n) - получаем первые n строк<br \>
             2) Перебираем и выводим все значения через цикл for:
-            [print(respons) for respons in cur]
+            &nbsp&nbsp&nbsp&nbsp[print(respons) for respons in cur]
         </h2>
+        <h2>
+            Изменение и удаление данных
+        </h2>
+        <h3>
+            Изменение
+            <br \ >
+            """UPDATE [имя таблицы] SET [имя столбца] = [новое значение] WHERE [условие] (можно обойтись без последнего пункта)"""<br \>
+            <br \>
+            Пример
+            """UPDATE users SET float = 0.5"""
+            <br \>
+            <br \>
+            <br \>
+            Удаление
+            """DELETE FROM [имя таблицы] WHERE [условие]"""
+            <br \>
+            <br \>
+            Пример
+            <br \>
+            <br \>
+            """DELETE FROM users WHERE rowid == 2"""
+        </h3>
         <br \>
         <br \>
     </p>
